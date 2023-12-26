@@ -41,7 +41,7 @@ function Banner() {
               fontFamily: "Montserrat",
             }}
           >
-            Crypto Hunter{" "}
+            CRYPTODIAN{" "}
           </Typography>{" "}
           <Typography
             variant="subtitle2"
