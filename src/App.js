@@ -4,6 +4,7 @@ import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
 import CoinPage from "./Pages/CoinPage";
 import Header from "./components/Header";
+import RegisterPage from "./Pages/RegisterPage";
 // for testing
 import Test from "./components/Test/Test";
 import TestForm from "./components/Test/TestForm";
@@ -25,6 +26,7 @@ function App() {
         <Header />
         <Route path="/" component={Homepage} exact />
         <Route path="/coins/:id" component={CoinPage} exact />
+        <Route path="/register" component={RegisterPage} exact />
         <Route path="/test" component={Test} />{" "}
         <Route path="/testForm" component={TestForm} />{" "}
       </div>{" "}
