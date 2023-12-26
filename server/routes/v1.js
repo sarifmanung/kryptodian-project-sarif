@@ -2,12 +2,11 @@ var express = require("express");
 var app = express.Router();
 let { hashPassword, comparePassword } = require("./utils.js");
 const axios = require("axios");
+let useragent = require("express-useragent");
+var session = require("express-session");
 var mysql = require("mysql");
 
 require("dotenv").config();
-let { fbconversionapitoken, fbpixel } = process.env;
-const IAM_USER_KEY = process.env.IAM_USER_KEY;
-const IAM_USER_SECRET = process.env.IAM_USER_SECRET;
 
 var pool = mysql.createPool({
   connectionLimit: 20,
@@ -113,7 +112,7 @@ app.post("/auth/login", async (req, res) => {
       }
 
       // Check if the password is correct
-      const storedPassword = results[0].password; // Assuming password is stored securely (hashed) in the database
+      const storedPassword = results[0].password;
 
       // Use a dedicated function to compare passwords
       const passwordMatch = await comparePassword(password, storedPassword);
@@ -123,13 +122,30 @@ app.post("/auth/login", async (req, res) => {
         return res.status(401).json({ error: "Invalid email or password" });
       }
 
-      console.log("login auth correctly~");
+      req.session.email = email;
+      req.session.save((err) => {
+        if (err) {
+          console.error("Error saving session:", err);
+        } else {
+          console.log("Session saved successfully");
+        }
+      });
+
+      console.log("email is ", req.session.email);
       res.send("ok");
     });
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "An error occurred" });
   }
+});
+
+app.post("/userPortfolio", async (req, res) => {
+  const { email } = req.session;
+
+  console.log(req.session.email);
+  console.log(email);
+  res.send("ok");
 });
 
 module.exports = app;
