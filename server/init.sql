@@ -3,7 +3,7 @@ CREATE DATABASE kryptodian_app CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 use kryptodian_app;
 
 -- Create User table
-CREATE TABLE User (
+CREATE TABLE `User` (
   UserID INT PRIMARY KEY,
   Username VARCHAR(255) NOT NULL,
   Password VARCHAR(255) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE User (
 );
 
 -- Create Cryptocurrency table
-CREATE TABLE Cryptocurrency (
+CREATE TABLE `Cryptocurrency` (
   CryptoID INT PRIMARY KEY,
   Name VARCHAR(255) NOT NULL,
   LogoURL VARCHAR(255) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE Cryptocurrency (
 );
 
 -- Create Portfolio table
-CREATE TABLE Portfolio (
+CREATE TABLE `Portfolio` (
   PortfolioID INT PRIMARY KEY,
   UserID INT,
   CryptoID INT,
