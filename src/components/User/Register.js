@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 const Register = () => {
   const classes = useStyles();
   const [formData, setFormData] = useState({
-    Username: "",
+    username: "",
     email: "",
     phone: "",
     password: "",
@@ -41,7 +41,7 @@ const Register = () => {
     if (submitSuccess) {
       // Clear the form after successful submission
       setFormData({
-        Username: "",
+        username: "",
         email: "",
         phone: "",
         password: "",
@@ -58,7 +58,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.Username) {
+    if (!formData.username) {
       window.alert("Full Name are required");
       return;
     }
@@ -79,7 +79,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5001/v1/api/submit", {
+      const response = await fetch("http://localhost:5001/v1/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,8 +111,8 @@ const Register = () => {
               fullWidth
               label="Full Name"
               variant="outlined"
-              name="Username"
-              value={formData.Username}
+              name="username"
+              value={formData.username}
               onChange={handleChange}
               className={classes.textField}
               InputProps={{
