@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Form = () => {
+const Register = () => {
   const classes = useStyles();
   const [formData, setFormData] = useState({
     Username: "",
@@ -58,13 +58,21 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate that password and confirm_password are not empty
+    if (!formData.Username) {
+      window.alert("Full Name are required");
+      return;
+    }
+
+    if (!formData.email) {
+      window.alert("Email are required");
+      return;
+    }
+
     if (!formData.password || !formData.confirm_password) {
       window.alert("Password and Confirm Password are required");
       return;
     }
 
-    // Validate that password and confirm_password match
     if (formData.password !== formData.confirm_password) {
       window.alert("Password and Confirm Password must match");
       return;
@@ -210,4 +218,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default Register;
