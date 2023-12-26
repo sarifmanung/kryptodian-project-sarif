@@ -12,7 +12,7 @@ import LoginPage from "./Pages/LoginPage";
 
 const useStyles = makeStyles(() => ({
   App: {
-    backgroundColor: "#14161a",
+    backgroundColor: "#1e2124!important",
     color: "white",
     minHeight: "100vh",
   },

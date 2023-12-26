@@ -90,6 +90,7 @@ const Register = () => {
       if (response.ok) {
         console.log("Data submitted successfully");
         window.alert("Data submitted successfully");
+        window.location.href = "/login";
         setSubmitSuccess(true);
       } else {
         console.error("Failed to submit data");
@@ -103,7 +104,7 @@ const Register = () => {
     <Container maxWidth="sm" className={classes.container}>
       <form onSubmit={handleSubmit} className={classes.form}>
         <Typography variant="h4" align="center" gutterBottom>
-          Register{" "}
+          REGISTER{" "}
         </Typography>{" "}
         <Grid container spacing={2} className={classes.form}>
           <Grid item xs={12}>
@@ -214,6 +215,17 @@ const Register = () => {
           </Grid>{" "}
         </Grid>{" "}
       </form>{" "}
+      <a
+        href="/login"
+        style={{
+          float: "right",
+          textDecoration: "underline",
+          color: "#1976d2",
+          paddingTop: "20px",
+        }}
+      >
+        ALREADY REGISTER ? LOGIN HERE{" "}
+      </a>{" "}
     </Container>
   );
 };
