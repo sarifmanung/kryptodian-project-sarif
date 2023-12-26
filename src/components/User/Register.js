@@ -79,7 +79,7 @@ const Register = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5001/v1/register", {
+      const response = await fetch("http://localhost:5001/v1/createUser", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -88,8 +88,7 @@ const Register = () => {
       });
 
       if (response.ok) {
-        console.log("Data submitted successfully");
-        window.alert("Data submitted successfully");
+        console.log("Register done");
         window.location.href = "/login";
         setSubmitSuccess(true);
       } else {
