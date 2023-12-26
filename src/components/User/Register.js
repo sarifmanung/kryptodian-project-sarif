@@ -59,12 +59,12 @@ const Register = () => {
     e.preventDefault();
 
     if (!formData.username) {
-      window.alert("Full Name are required");
+      window.alert("Full Name is required");
       return;
     }
 
     if (!formData.email) {
-      window.alert("Email are required");
+      window.alert("Email is required");
       return;
     }
 
@@ -92,10 +92,15 @@ const Register = () => {
         window.location.href = "/login";
         setSubmitSuccess(true);
       } else {
-        console.error("Failed to submit data");
+        const responseData = await response.json();
+        console.error("Failed to submit data", responseData);
+
+        // Display the error message to the user
+        window.alert(responseData.error || "Failed to submit data");
       }
     } catch (error) {
       console.error("Error:", error);
+      window.alert("Error:", error.message || "An error occurred");
     }
   };
 

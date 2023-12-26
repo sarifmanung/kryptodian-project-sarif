@@ -14,11 +14,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     marginTop: theme.spacing(5),
   },
-  form: {
-    // display: "flex",
-    // flexDirection: "column",
-    // alignItems: "center",
-  },
+  form: {},
   textField: {
     marginTop: theme.spacing(2),
     marginBottom: theme.spacing(2),
@@ -26,27 +22,29 @@ const useStyles = makeStyles((theme) => ({
   submitButton: {
     marginTop: theme.spacing(3),
   },
+  errorText: {
+    color: "red",
+    marginTop: theme.spacing(2),
+  },
 }));
 
 const Login = () => {
   const classes = useStyles();
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
-    phone: "",
     password: "",
   });
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (submitSuccess) {
-      // Clear the form after successful submission
+      // Clear the form and error after successful submission
       setFormData({
-        username: "",
         email: "",
-        phone: "",
         password: "",
       });
+      setError("");
     }
   }, [submitSuccess]);
 
@@ -59,12 +57,12 @@ const Login = () => {
     e.preventDefault();
 
     if (!formData.email) {
-      window.alert("Email are required");
+      setError("Email is required");
       return;
     }
 
-    if (!formData.password || !formData.confirm_password) {
-      window.alert("Password are required");
+    if (!formData.password) {
+      setError("Password is required");
       return;
     }
 
@@ -78,15 +76,17 @@ const Login = () => {
       });
 
       if (response.ok) {
-        console.log("Data submitted successfully");
-        window.alert("Data submitted successfully");
-        window.location.href = "/";
+        console.log("login success");
+        window.alert("Login success");
+        window.location.href = "/portfolio";
         setSubmitSuccess(true);
       } else {
-        console.error("Failed to submit data");
+        const responseData = await response.json();
+        setError(responseData.error || "Login failed");
       }
     } catch (error) {
       console.error("Error:", error);
+      setError(error.message || "An error occurred");
     }
   };
 
@@ -96,6 +96,12 @@ const Login = () => {
         <Typography variant="h4" align="center" gutterBottom>
           LOGIN{" "}
         </Typography>{" "}
+        {error && (
+          <Typography variant="body2" className={classes.errorText}>
+            {" "}
+            {error}{" "}
+          </Typography>
+        )}{" "}
         <Grid container spacing={2} className={classes.form}>
           <Grid item xs={12}>
             <TextField
@@ -161,7 +167,7 @@ const Login = () => {
           paddingTop: "20px",
         }}
       >
-        NOT REGISTER YET ?{" "}
+        NOT REGISTER YET ?
       </a>{" "}
     </Container>
   );
