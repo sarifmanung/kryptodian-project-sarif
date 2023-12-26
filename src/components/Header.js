@@ -11,6 +11,8 @@ import {
   makeStyles,
   ThemeProvider,
 } from "@material-ui/core/styles";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 import { useHistory } from "react-router-dom";
 import { CryptoState } from "../CryptoContext";
 
@@ -52,6 +54,11 @@ function Header() {
               CRYPTODIAN{" "}
             </Typography>{" "}
             {/* <Button color="inherit">Login</Button> */}{" "}
+            <Stack spacing={2} direction="row">
+              <Button variant="outlined" onClick={() => history.push(`/login`)}>
+                Login{" "}
+              </Button>{" "}
+            </Stack>{" "}
             <Select
               variant="outlined"
               labelId="demo-simple-select-label"
