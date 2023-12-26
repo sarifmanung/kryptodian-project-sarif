@@ -8,6 +8,7 @@ import RegisterPage from "./Pages/RegisterPage";
 // for testing
 import Test from "./components/Test/Test";
 import TestForm from "./components/Test/TestForm";
+import LoginPage from "./Pages/LoginPage";
 
 const useStyles = makeStyles(() => ({
   App: {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/" component={Homepage} exact />
         <Route path="/coins/:id" component={CoinPage} exact />
         <Route path="/register" component={RegisterPage} exact />
+        <Route path="/login" component={LoginPage} exact />
         <Route path="/test" component={Test} />{" "}
         <Route path="/testForm" component={TestForm} />{" "}
       </div>{" "}
