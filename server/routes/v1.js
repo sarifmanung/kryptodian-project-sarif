@@ -140,12 +140,12 @@ app.post("/auth/login", async (req, res) => {
   }
 });
 
-app.post("/userPortfolio", async (req, res) => {
+app.get("/userPortfolio", async (req, res) => {
   const { email } = req.session;
 
   console.log(req.session.email);
   console.log(email);
-  res.send("ok");
+  res.json({ message: "ok" });
 });
 
 module.exports = app;
