@@ -14,8 +14,8 @@ require("log-timestamp");
 
 app.use(
   session({
-    secret: "dcggdeee",
-    resave: true,
+    secret: "sarifeee",
+    resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 day
   })
@@ -59,9 +59,6 @@ app.use("*", async (req, res, next) => {
 
   next();
 });
-
-var html = require("./routes/html.js");
-app.use("/", html);
 
 let port = 5001;
 var server = app.listen(port, () =>

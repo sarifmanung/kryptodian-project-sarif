@@ -1,5 +1,3 @@
-const nodemailer = require("nodemailer");
-const axios = require("axios");
 const bcrypt = require("bcrypt");
 fs = require("fs");
 path = require("path");
